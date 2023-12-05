@@ -1,0 +1,81 @@
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/purchase.css">
+
+</head>
+
+<body>
+
+
+    <header>
+        <div class="header">
+            <img class="logo" src="../assets/logo.jpg" alt="">
+            <input class="search" type="" placeholder="Bạn tìm gì...">
+            <img class="icon-search" src="../assets/search.svg" alt="">
+            <div class="cart">
+                <img class="cart-img" src="../assets/cart.svg" alt="">
+                <div class="cart-title">
+                    Giỏ hàng
+                </div>
+            </div>
+        </div>
+        <ul class="navbar">
+            <li>
+                <p>Trang chủ</p>
+            </li>
+            <li>
+                <p>Tất cả sản phẩm</p>
+            </li>
+            <li>
+                <p>Thương hiệu</p>
+            </li>
+            <li>
+                <p>Cửa hàng</p>
+            </li>
+            <li>
+                <p>Tin tức</p>
+            </li>
+        </ul>
+    </header>
+    <div class="body">
+        <form id="form" method="post">
+            <div class="title">
+                <h1>Mua Hàng</h1>
+            </div>
+            <label for="name">Họ và tên:</label>
+            <input type="text" id="name" name="name" required >
+
+            <label for="phoneNumber">Số điện thoại:</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="address">Địa chỉ:</label>
+            <input type="text" id="address" name="address" required>
+
+            <div class="productName">
+                <p>Tên sản phẩm: </p>
+
+                <p id="productName"></p>
+            </div>
+            <div class="productPrice">
+                <p>Tổng tiền: </p>
+
+                <p id="productPrice"></p>
+            </div>
+
+            <button type="submit" >Thanh toán</button>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+
+    <script src="../js/purchase.js"></script>
+</body>
+
+</html>
