@@ -100,7 +100,14 @@ listLaptop = [{
 },
 ]
 
-
+await fetch("http://localhost:3000/api/getalllaptop", {
+    headers: {
+        "Content-Type": "application/json",
+    },
+    method: "GET",
+}).then((data) => data.json()).then((data) => {
+//list laptop
+})
 
 var counter = 1;
 setInterval(function () {

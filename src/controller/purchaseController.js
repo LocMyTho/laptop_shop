@@ -102,7 +102,7 @@ class PurchaseController {
                                         },
                                         create: {
                                             name: req.body.laptop,
-                                            price: amount,
+                                            price: price*1,
                                         }
                                     }
                                 }

@@ -22,12 +22,13 @@ model Laptop {
   id          Int           @id @default(autoincrement())
   name        String
   price       Int
+  img         String
   historyOder HistoryOder[]
 }
 
 model HistoryOder {
   id       Int    @id @default(autoincrement())
-  orderId  Int    @unique
+  orderId  String @unique
   user     User   @relation(fields: [userId], references: [id])
   userId   Int
   laptop   Laptop @relation(fields: [laptopId], references: [id])
