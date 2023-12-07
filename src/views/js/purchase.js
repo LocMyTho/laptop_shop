@@ -1,10 +1,25 @@
 let urlParam = new URLSearchParams(window.location.search)
-let laptop = urlParam.get('laptop')
-let price = urlParam.get('price')
+let laptopid = urlParam.get('laptopid')
+
+console.log(laptopid);
+fetch('http://localhost:3000/api/getlaptop', {
+    headers: {
+        "Content-Type": "application/json",
+
+    },
+    method: "POST",
+    body: JSON.stringify({
+        "id": laptopid
+    })
+
+})
+    .then((data) => { return data.json() }).then((data) => {
+        document.getElementById("productName").innerHTML = data.name
+        document.getElementById("productPrice").innerHTML = data.price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    }).catch((err) => console.log(err))
 
 
-document.getElementById("productName").innerHTML = laptop
-document.getElementById("productPrice").innerHTML = price
+
 document.getElementById('form').addEventListener('submit', async function (event) {
     event.preventDefault()
 
@@ -18,14 +33,12 @@ document.getElementById('form').addEventListener('submit', async function (event
         },
         method: "POST",
         body: JSON.stringify(
-
             {
                 "name": name,
                 "phoneNumber": phoneNumber,
                 "email": email,
                 "address": address,
-                "laptop": laptop,
-                "price": price,
+                "laptopid": laptopid,
             }
         )
     })
@@ -34,7 +47,7 @@ document.getElementById('form').addEventListener('submit', async function (event
         })
         .then(data => {
             console.log(data);
-            window.location.href=data.payUrl
+            window.location.href = data.payUrl
 
         }).catch(err => {
             console.log(err);

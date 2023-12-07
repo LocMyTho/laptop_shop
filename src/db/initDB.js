@@ -2,7 +2,7 @@ const { PrismaClient } = require("@prisma/client")
 const prisma = new PrismaClient
 module.exports = async () => {
     const user = await prisma.user.findMany()
-    if (user.length ==0) {
+    if (user.length == 0) {
         listLaptop = [{
             "name": "HP 15s fq5229TU i3 1215U (8U237PA)",
             "img": "lap1.png",
@@ -134,21 +134,27 @@ module.exports = async () => {
                 address: "Hẻm 01 Ấp Bắc, Phường 05, Thành phố Mỹ Tho, Tiền Giang, Việt Nam",
                 status: "PENDDING",
                 laptopId: 1,
-                orderId: "MOMOBKUN201805291701793990597",
+                orderId: "1701793990597",
+                amount: 11301900,
+                deliveryFee:111900,
                 userId: 1,
             },
             {
                 address: "Hẻm 01 Ấp Bắc, Phường 05, Thành phố Mỹ Tho, Tiền Giang, Việt Nam",
                 status: "CANCEL",
                 laptopId: 1,
-                orderId: "MOMOBKUN201805291701793466126",
+                orderId: "1701793466126",
+                amount: 11301900,
+                deliveryFee:111900,
                 userId: 2,
             },
             {
                 address: "C8GJ+6P6, ĐT878, Thân Cửu Nghĩa, Châu Thành, Tiền Giang, Việt Nam",
                 status: "COMPLETE",
                 laptopId: 1,
-                orderId: "MOMOBKUN201805291701793424758",
+                orderId: "1701793424758",
+                amount: 11301900,
+                deliveryFee:111900,
                 userId: 3,
             },
             ]

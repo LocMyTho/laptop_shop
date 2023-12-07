@@ -7,14 +7,15 @@ class PurchaseController {
     }
 
     async payWithMoMoAtm(req, res) {
-        let price = req.body.price.replace(/\./g, "").replace("đ", "");
+        let laptop = await prisma.laptop.findFirst({ where: { id: req.body.laptopid * 1 } })
+        let price = laptop.price;
 
         let partnerCode = "MOMOBKUN20180529";
         let accessKey = "klm05TvNBzhg7h7j";
         let secretkey = "at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa";
-        let requestId = partnerCode + new Date().getTime();
-        let orderId = requestId;
-        let orderInfo = req.body.name + "-" + req.body.laptop;
+        let requestId = new Date().getTime();
+        let orderId = requestId.toString();
+        let orderInfo = req.body.name + "-" + laptop.name;
         let redirectUrl = "http://localhost:3000/thanks";
         let ipnUrl = "http://localhost:3000/thanks";
         let amount = Math.round(price * 1.1);
@@ -30,7 +31,7 @@ class PurchaseController {
         let items = [
             {
                 id: "1",
-                name: req.body.laptop,
+                name: laptop.name,
                 price: price,
                 currency: "VND",
                 quantity: 1,
@@ -95,15 +96,11 @@ class PurchaseController {
                             create: {
                                 orderId: orderId,
                                 address: req.body.address,
+                                amount: amount,
+                                deliveryFee: price * 0.1,
                                 laptop: {
-                                    connectOrCreate: {
-                                        where: {
-                                            id: 1
-                                        },
-                                        create: {
-                                            name: req.body.laptop,
-                                            price: price*1,
-                                        }
+                                    connect: {
+                                        id: laptop.id
                                     }
                                 }
                             }
@@ -119,6 +116,20 @@ class PurchaseController {
         console.log("Sending....")
         await reqq.write(requestBody);
         await reqq.end();
+    }
+
+    async getLaptop(req, res) {
+        let laptopid = req.body.id
+        let laptop = await prisma.laptop.findFirst({
+            where: {
+                id: laptopid * 1.0,
+            },
+            select: {
+                name: true,
+                price: true
+            }
+        })
+        res.json(laptop)
     }
 
 }
