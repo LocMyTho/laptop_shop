@@ -1,3 +1,4 @@
+const axios = require('axios')
 const path = require('path')
 const { PrismaClient } = require("@prisma/client")
 const { json } = require('express')
@@ -8,8 +9,6 @@ class ThanksController {
     }
 
     async completePurechase(req, res) {
-        console.log(req.body.orderId);
-
         let response = await prisma.historyOder.update({
             where: {
                 orderId: req.body.orderId.toString()
